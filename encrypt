@@ -1,0 +1,12 @@
+# an insecure method to share small bits of text. it looks secure at first glance.
+# is based off of a poor understanding of AES.
+# avoid symbols like & and * if possible. they mess stuff up. dont know why.
+$var5 = "phrase";
+$var = 0,0,0,0,$var2,$var3,$var4,2,0,1,4;
+$var[4] = "passphrase";
+$var[6] = $var[4] -split "";
+$var[5] = $in -split "";
+$var[3] = ((($var[5].length+($var[$var[10]]).length)/(($var[$var[10]]).Length)));
+while ($var[2] -lt ($var[3]+$var[9])){$var[4] = $var[$var[10]]*$var[7]; $var[2]++};
+set-Content C:\scripts\encrypted.txt -Value '';
+foreach ($var1 in $var[5]){(((($var5.ToCharArray()|%{[int][char]$_})|Select-Object -First $var[9] -Skip ($var[0]+$var[8]))) -shl ((($var[$var[10]].ToCharArray() | %{[int][char]$_})|Select-Object -First 1 -Skip ($var[0]+$var[8]))))|Add-Content C:\scripts\encrypted.txt;$var[0]++}
