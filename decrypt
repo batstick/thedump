@@ -1,0 +1,20 @@
+# avoid symbols like & and * if possible. they mess stuff up
+$data = Get-Content C:\scripts\encrypted.txt | Select-Object -skip 1
+$key = "supersecret"
+$tick = 0
+$lengthcount = 0
+$length = (($datasplit.length)/($key.Length))
+
+while ($lengthcount -lt ($length+1)){$key = $key + $key; $lengthcount++}
+
+set-Content C:\scripts\normalized.txt -Value ''
+foreach ($ltr in $data){
+    ($ltr -shr ((($key.ToCharArray() | %{[int][char]$_}) | Select-Object -First 1 -Skip ($tick+0)))) | add-Content C:\scripts\normalized.txt
+    $tick++
+}
+
+$encryptedmsg = get-content C:\scripts\normalized.txt
+
+$cleartext = foreach ($charUNENCRYPTED in $encryptedmsg){($charUNENCRYPTED | %{[char][int]$_})}
+
+Write-Output ($cleartext -join "")
